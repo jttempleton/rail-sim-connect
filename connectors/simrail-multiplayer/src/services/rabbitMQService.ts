@@ -36,7 +36,14 @@ async function createUserQueue(userId: string) {
     const userQueue = `user_${userId}_queue`;
 
     // Declare the user-specific queue
-    await channel.assertQueue(userQueue, { exclusive: false, durable: false });
+    await channel.assertQueue(userQueue, {
+        exclusive: false,
+        durable: false,
+        arguments: {
+            "x-message-ttl": config.RABBITMQ_USER_MESSAGE_TTL, // Messages expire after 10 seconds
+            "x-expires": config.RABBITMQ_USER_QUEUE_EXPIRES, // Queue expires after 10 minutes of inactivity
+        },
+    });
 
     // Bind the user-specific queue to the direct exchange with a routing key
     await channel.bindQueue(userQueue, DIRECT_EXCHANGE, userId);

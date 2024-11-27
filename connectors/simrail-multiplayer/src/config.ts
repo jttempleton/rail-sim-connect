@@ -9,6 +9,8 @@ const ConfigSchema = z.object({
     PORT: z.string().default("3000").transform(Number),
     RABBITMQ_URL: z.string().url(),
     RABBITMQ_QUEUE: z.string(),
+    RABBITMQ_USER_MESSAGE_TTL: z.string().default("10000").transform(Number),
+    RABBITMQ_USER_QUEUE_EXPIRES: z.string().default("60000").transform(Number),
     SIMRAIL_API_URL: z.string().url(),
     DISPATCHER_URL: z.string().url(),
     POLL_INTERVAL: z.string().default("3000").transform(Number), // Default to 3 seconds (3000 ms)
