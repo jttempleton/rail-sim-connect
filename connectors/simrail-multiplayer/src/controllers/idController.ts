@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AccountMap } from "../models/accountMap";
+import accountMap from "../models/accountMap";
 import {
     sendSuccess,
     sendCreated,
@@ -20,12 +20,6 @@ interface RemoveAccountRequest extends Request {
 }
 
 export class IdController {
-    private accountMap: AccountMap;
-
-    constructor(accountMap: AccountMap) {
-        this.accountMap = accountMap;
-    }
-
     /**
      * Handles adding an internal user ID and account ID pair to the account map.
      */
@@ -41,10 +35,12 @@ export class IdController {
         }
 
         try {
-            this.accountMap.addAccount(internalUserId, accountId);
+            accountMap.addAccount(internalUserId, accountId);
             sendCreated(res, "Account added successfully.");
-        } catch (error: any) {
-            sendBadRequest(res, error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                sendBadRequest(res, error.message);
+            }
         }
     };
 
@@ -60,10 +56,12 @@ export class IdController {
         }
 
         try {
-            this.accountMap.removeAccount(accountId);
+            accountMap.removeAccount(accountId);
             sendSuccess(res, "Account removed successfully.");
-        } catch (error: any) {
-            sendBadRequest(res, error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                sendBadRequest(res, error.message);
+            }
         }
     };
 }

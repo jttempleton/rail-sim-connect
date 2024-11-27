@@ -48,3 +48,6 @@ export class AccountMap {
         return Array.from(this.map.keys());
     }
 }
+
+const accountMap = new AccountMap();
+export default accountMap;

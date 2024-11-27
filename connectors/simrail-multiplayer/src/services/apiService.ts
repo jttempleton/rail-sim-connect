@@ -1,25 +1,16 @@
 import axios from "axios";
-import { AccountMap } from "../models/accountMap";
+import { TrainsApiResponse } from "../types/TrainsResponse";
 
 export const pollApi = async (
-    apiUrl: string,
-    accountMap: AccountMap
-): Promise<void> => {
+    apiUrl: string
+): Promise<TrainsApiResponse | null> => {
     try {
         const response = await axios.get(apiUrl);
-        const data: Array<{ accountId: string }> = response.data;
+        const data: TrainsApiResponse = response.data;
 
-        if (!Array.isArray(data)) {
-            throw new Error("API response is not an array");
-        }
-
-        const accountIds = accountMap.getAllAccountIds();
-        data.forEach(({ accountId }) => {
-            if (accountIds.includes(accountId)) {
-                accountMap.updateLastSeen(accountId);
-            }
-        });
+        return data;
     } catch (error) {
         console.error("Error polling API:", error);
+        return null;
     }
 };

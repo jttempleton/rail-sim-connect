@@ -1,11 +1,9 @@
 import express, { Router } from "express";
 import { IdController } from "../controllers/idController";
-import { AccountMap } from "../models/accountMap";
 
 // Initialize the router and dependencies
 const router: Router = express.Router();
-const accountMap = new AccountMap();
-const idController = new IdController(accountMap);
+const idController = new IdController();
 
 // Define routes
 /**

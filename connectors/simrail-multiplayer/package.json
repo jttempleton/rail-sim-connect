@@ -7,8 +7,8 @@
         "test": "jest",
         "start": "node dist/app.js",
         "dev": "nodemon src/app.ts",
-        "build": "tsc",
-        "lint": "eslint . --ext .ts"
+        "build": "rimraf dist && tsc -p tsconfig.json",
+        "lint": "eslint src/**/*.ts"
     },
     "author": "jttempleton",
     "license": "ISC",
@@ -16,15 +16,22 @@
         "@babel/core": "^7.26.0",
         "@babel/preset-env": "^7.26.0",
         "@babel/preset-typescript": "^7.26.0",
+        "@eslint/js": "^9.15.0",
         "@types/amqplib": "^0.10.5",
         "@types/express": "^5.0.0",
         "@types/jest": "^29.5.14",
         "@types/node": "^22.10.0",
+        "@typescript-eslint/eslint-plugin": "^8.16.0",
+        "@typescript-eslint/parser": "^8.16.0",
         "babel-jest": "^29.7.0",
+        "eslint": "^9.15.0",
+        "globals": "^15.12.0",
         "jest": "^29.7.0",
+        "rimraf": "^6.0.1",
         "ts-jest": "^29.2.5",
         "ts-node": "^10.9.2",
-        "typescript": "^5.7.2"
+        "typescript": "^5.7.2",
+        "typescript-eslint": "^8.16.0"
     },
     "dependencies": {
         "amqplib": "^0.10.5",
