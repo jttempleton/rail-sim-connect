@@ -19,6 +19,8 @@ services:
     container_name: simrail-multiplayer
     ports:
       - "3100:3100"
+    environment:
+      RABBITMQ_URL: amqp://user:password@rabbitmq:5672
     env_file:
       - connectors/simrail-multiplayer/.env
 volumes:
