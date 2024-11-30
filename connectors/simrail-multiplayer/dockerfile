@@ -2,10 +2,7 @@
 FROM node:18
 
 # Set the working directory inside the container
-WORKDIR connectors/simrail-multiplayer
-
-RUN pwd
-RUN ls
+WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json files
 COPY package*.json ./
