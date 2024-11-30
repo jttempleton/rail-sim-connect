@@ -20,6 +20,6 @@ services:
     ports:
       - "3100:3100"
     env_file:
-      - .env
+      - connectors/simrail-multiplayer/.env
 volumes:
   rabbitmq_data:
