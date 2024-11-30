@@ -15,7 +15,7 @@ services:
   simrail-multiplayer:
     build:
       context: .
-      dockerfile: connectors/simrail-multiplayer/Dockerfile
+      dockerfile: connectors/simrail-multiplayer/dockerfile
     container_name: simrail-multiplayer
     ports:
       - "3100:3100"
