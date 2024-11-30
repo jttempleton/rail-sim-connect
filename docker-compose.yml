@@ -14,7 +14,7 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq # persistent data
   simrail-multiplayer:
     build:
-      context: .
+      context: connectors/simrail-multiplayer
       dockerfile: connectors/simrail-multiplayer/dockerfile
     container_name: simrail-multiplayer
     ports:
