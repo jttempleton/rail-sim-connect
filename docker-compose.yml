@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:4
     container_name: rabbitmq
     ports:
       - "5672:5672"   # messaging
@@ -10,6 +10,12 @@ services:
       RABBITMQ_DEFAULT_PASS: password
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq # persistent data
-
+  simrail-multiplayer:
+    build:
+      context: .
+      dockerfile: connectors/simrail-multiplayer/Dockerfile
+    container_name: simrail-multiplayer
+    ports:
+      - "3100:3100"
 volumes:
   rabbitmq_data:
